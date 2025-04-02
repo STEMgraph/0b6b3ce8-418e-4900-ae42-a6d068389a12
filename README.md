@@ -1,51 +1,73 @@
 <!---
 {
-  "depends_on": [],
+  "depends_on": ["https://github.com/STEMgraph/67ed6d0b4d7c81918a47a26fdf1d2bfd"],
   "author": "Stephan Bökelmann",
-  "first_used": "2025-03-17",
-  "keywords": ["learning", "exercises", "education", "practice"]
+  "first_used": "2025-04-02",
+  "keywords": ["C Language", "Expressions", "Functions", "Operators"]
 }
 --->
 
-# Learning Through Exercises
+# Expressions and Functions
 
 ## 1) Introduction
-Learning by doing is one of the most effective methods to acquire new knowledge and skills. Rather than passively consuming information, actively engaging in problem-solving fosters deeper understanding and long-term retention. By working through structured exercises, students can grasp complex concepts in a more intuitive and applicable way. This approach is particularly beneficial in technical fields like programming, mathematics, and engineering.
+Expressions are the building blocks of computation — they represent values and operations. Functions let us abstract and name these computations.
 
-### 1.1) Further Readings and Other Sources
-- [The Importance of Practice in Learning](https://www.sciencedirect.com/science/article/pii/S036013151300062X)
-- "The Art of Learning" by Josh Waitzkin
-- [How to Learn Effectively: 5 Key Strategies](https://www.edutopia.org/article/5-research-backed-learning-strategies)
+In C, an **expression** is anything that can be *evaluated* (produces a value). This can be:
+- a literal like `42`
+- a variable like `x`
+- a combination like `x + 3`
+- a function call like `sqrt(x)`
+
+Expressions always have a **type** and (usually) a **value**. Even assignments like `x = 4` are expressions in C — they evaluate to the assigned value.
+
+To organize expressions and reuse logic, we group them into **functions**. A function is a named block of code that receives input (parameters) and returns a value. 
+```C
+return_type function_identifier (input_parameter_type_n local_input_parameter_identifier_n, ...)
+{
+  //definition: parameter values can be accessed by the local input parameter identifier
+  return identifier_or_expression;  //the value-type must match the functions return-type
+}
+```
+
+A function in C can be thought of as a **mapping** — from an object of the cartesian product of its input types to a single output type:
+
+- `int add(int a, int b)` represents a function from Z × Z → Z
+- `char to_ascii(int code)` might be seen as Z → Σ, where Σ is the character set
+- `float half(float x)` defines a mapping from R → R
+
+Understanding functions in this way allows us to reason more formally about **input**, **output**, and **side effects**.
+
+Let’s review how all these pieces fit:
+- An **identifier** names something (a variable, function, constant)
+- An **expression** produces a value (e.g. `x + 3` or `sqrt(a*b)`)
+- A **statement** does something (e.g. assignment, function call, control flow)
+- An **operator** transforms or combines values (e.g. `+`, `-`, `*`, `/`)
+
+Every function body is a collection of statements, many of which are made up of expressions.
 
 ## 2) Tasks
-1. **Write a Summary**: Summarize the concept of "learning by doing" in 3-5 sentences.
-2. **Example Identification**: List three examples from your own experience where learning through exercises helped you understand a topic better.
-3. **Create an Exercise**: Design a simple exercise for a topic of your choice that someone else could use to practice.
-4. **Follow an Exercise**: Find an online tutorial that includes exercises and complete at least two of them.
-5. **Modify an Existing Exercise**: Take a basic problem from a textbook or online course and modify it to make it slightly more challenging.
-6. **Pair Learning**: Explain a concept to a partner and guide them through an exercise without giving direct answers.
-7. **Review Mistakes**: Look at an exercise you've previously completed incorrectly. Identify why the mistake happened and how to prevent it in the future.
-8. **Time Challenge**: Set a timer for 10 minutes and try to solve as many simple exercises as possible on a given topic.
-9. **Self-Assessment**: Create a checklist to evaluate your own performance in completing exercises effectively.
-10. **Reflect on Progress**: Write a short paragraph on how this structured approach to exercises has influenced your learning.
+1. **Define Simple Functions**: Write the following functions:
+   - `int add(int a, int b)` returns the sum
+   - `float average(float x, float y)` returns the average
+   - `char grade(int score)` returns 'A', 'B', etc., depending on score
 
-<details>
-  <summary>Tip for Task 5</summary>
-  Try making small adjustments first, such as increasing the difficulty slightly or adding an extra constraint.
-</details>
+2. **Use in `main()`**: Place the functions within your source-file above the start of `main()`. Call these functions from `main()` with example values and print the result using `printf`.
+3. **Use in `main()`**: Place the functions below the end of `main()`. Call these functions from `main()` with example values and print the result using `printf`.
+4. **Use in `main()`**: Place only the signature (`int add(int, int)` above the start of `main()`, leave the implementations below the end of `main()`. Call these functions from `main()` with example values and print the result using `printf`.
+5. **#include "signatures.h"**: Run `gcc -E` on your current `main.c` file and redirect the output into a temporary file. Place the signatures in another file in the same directory called `signatures.h`. Use the preprocessor-directive `#include "signatures.h"` in the place where you formerly wrote the signatures themself. Run `gcc -E` and pipe it into a second file. Use `vimdiff` to compare the files. 
+
+6. **Expression Trees**: Given `3 + a * (b - 2)`, draw the expression as a tree on paper or using ASCII.
+
+7. **Function as Expression**: Assign the result of a function call to a variable: `int result = add(5, 6);`
+
+8. **Compose Functions**: Call one function from inside another: `grade(add(a, b));`
 
 ## 3) Questions
-1. What are the main benefits of learning through exercises compared to passive learning?
-2. How do exercises improve long-term retention?
-3. Can you think of a subject where learning through exercises might be less effective? Why?
-4. What role does feedback play in learning through exercises?
-5. How can self-designed exercises improve understanding?
-6. Why is it beneficial to review past mistakes in exercises?
-7. How does explaining a concept to someone else reinforce your own understanding?
-8. What strategies can you use to stay motivated when practicing with exercises?
-9. How can timed challenges contribute to learning efficiency?
-10. How do exercises help bridge the gap between theory and practical application?
+1. What’s the difference between an expression and a statement in C?
+2. Why can assignments like `x = y = z = 0;` be chained?
+3. What is the return type of an expression like `x + 1.0` if `x` is `int`?
+4. Can a function return the result of another function? What is evaluated first?
+5. How does the compiler know the type of an expression?
 
 ## 4) Advice
-Practice consistently and seek out diverse exercises that challenge different aspects of a topic. Combine exercises with reflection and feedback to maximize your learning efficiency. Don't hesitate to adapt exercises to fit your own needs and ensure that you're actively engaging with the material, rather than just going through the motions.
-
+Use `gcc -Wall -Wextra -o test test.c` to find type-related issues early. Try breaking long expressions into smaller sub-expressions and assign them to variables to understand their type and value. Don’t fear nesting — just make sure each function has one clear responsibility and its return type fits its purpose.
