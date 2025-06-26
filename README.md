@@ -1,6 +1,6 @@
 <!---
 {
-  "depends_on": ["https://github.com/STEMgraph/67ed6d0b4d7c81918a47a26fdf1d2bfd"],
+  "depends_on": ["67ed6d0b4d7c81918a47a26fdf1d2bfd"],
   "author": "Stephan Bökelmann",
   "first_used": "2025-04-02",
   "keywords": ["C Language", "Expressions", "Functions", "Operators"]
