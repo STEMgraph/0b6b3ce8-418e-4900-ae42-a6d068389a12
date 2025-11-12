@@ -1,6 +1,7 @@
 <!---
 {
-  "id": "0b6b3ce8-418e-4900-ae42-a6d068389a12"
+  "id": "0b6b3ce8-418e-4900-ae42-a6d068389a12",
+  "teaches": "Expressions and Functions",
   "depends_on": ["67ed6d0b4d7c81918a47a26fdf1d2bfd"],
   "author": "Stephan Bökelmann",
   "first_used": "2025-04-02",
