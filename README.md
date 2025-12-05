@@ -2,7 +2,7 @@
 {
   "id": "0b6b3ce8-418e-4900-ae42-a6d068389a12",
   "teaches": "Expressions and Functions",
-  "depends_on": ["67ed6d0b4d7c81918a47a26fdf1d2bfd"],
+  "depends_on": ["61354751-6887-4761-9ef0-ca25d237cf1c"],
   "author": "Stephan Bökelmann",
   "first_used": "2025-04-02",
   "keywords": ["C Language", "Expressions", "Functions", "Operators"]
